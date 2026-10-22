@@ -1,0 +1,1076 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RemoteHire | Find Remote Jobs Worldwide</title>
+
+<style>
+:root {
+  --blue: #285cff;
+  --navy: #091b3c;
+  --muted: #607394;
+  --bg: #edf3fa;
+  --line: #dce5f2;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--navy);
+  background: var(--bg);
+}
+
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+
+.wrap {
+  max-width: 1150px;
+  margin: auto;
+  padding: 0 22px;
+}
+
+/* NAVIGATION */
+.top {
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 76px;
+  gap: 18px;
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 27px;
+  color: var(--blue);
+}
+
+.logo span { color: var(--navy); }
+
+.links {
+  display: flex;
+  gap: 28px;
+  font-size: 14px;
+  font-weight: 700;
+  flex-wrap: wrap;
+}
+
+.links a:hover { color: var(--blue); }
+
+/* HERO */
+.hero {
+  background: linear-gradient(115deg, #11274d, #2456a5);
+  color: white;
+  text-align: center;
+  padding: 75px 0;
+}
+
+.hero h1 {
+  font-size: clamp(32px, 5vw, 52px);
+  margin: 0 0 15px;
+}
+
+.hero p {
+  color: #dbe8ff;
+  margin: 0 auto 25px;
+  max-width: 670px;
+}
+
+.search {
+  display: flex;
+  gap: 10px;
+  max-width: 830px;
+  margin: auto;
+  background: white;
+  padding: 12px;
+  border-radius: 14px;
+}
+
+.search input,
+.search select {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  min-width: 0;
+  flex: 1;
+  color: var(--navy);
+}
+
+.btn {
+  border: 0;
+  border-radius: 9px;
+  padding: 12px 19px;
+  background: var(--blue);
+  color: #fff;
+  font-weight: 700;
+}
+
+.btn:hover { background: #1746d5; }
+
+.outline {
+  background: white;
+  color: var(--blue);
+  border: 1px solid var(--blue);
+}
+
+.outline:hover { background: #eff4ff; }
+
+.stats {
+  margin-top: 26px;
+  font-weight: 700;
+  color: #eaf2ff;
+}
+
+/* SECTIONS */
+section { padding: 55px 0; }
+
+.section-heading {
+  font-size: 29px;
+  margin: 0 0 10px;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin: 0 0 26px;
+}
+
+.info { background: #fff; }
+
+/* CATEGORIES */
+.categories {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.category {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: white;
+  text-align: left;
+  padding: 22px;
+  color: var(--navy);
+}
+
+.category:hover,
+.category:focus-visible {
+  border-color: var(--blue);
+  box-shadow: 0 5px 20px #183c8214;
+}
+
+.category .emoji {
+  font-size: 28px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.category strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.category small { color: var(--muted); }
+
+/* JOBS LAYOUT */
+.jobs-layout {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 25px;
+}
+
+.filters,
+.job,
+.empty {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.filters {
+  padding: 24px;
+  align-self: start;
+}
+
+.filters h3 { margin: 0 0 22px; }
+
+.field { margin-bottom: 23px; }
+
+.field label {
+  display: block;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 9px;
+}
+
+.field select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  color: var(--navy);
+}
+
+.results-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 17px;
+  color: var(--muted);
+}
+
+.job-list {
+  display: grid;
+  gap: 16px;
+}
+
+/* JOB CARDS */
+.job { padding: 24px; }
+
+.job-head {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.avatar {
+  width: 53px;
+  height: 53px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: #e6eeff;
+  display: grid;
+  place-items: center;
+  color: var(--blue);
+  font-weight: 800;
+}
+
+.job h3 {
+  margin: 0 0 5px;
+  font-size: 19px;
+}
+
+.company {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 17px 0;
+}
+
+.tag {
+  font-size: 12px;
+  font-weight: 700;
+  background: #eff5ff;
+  color: #2555b9;
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+
+.desc {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+
+.job-foot {
+  border-top: 1px solid var(--line);
+  padding-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.salary {
+  color: #078258;
+  font-weight: 800;
+}
+
+.demo {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.empty {
+  text-align: center;
+  padding: 35px;
+  color: var(--muted);
+}
+
+/* BENEFITS */
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.benefit {
+  padding: 25px;
+  background: var(--bg);
+  border-radius: 12px;
+}
+
+.benefit h3 { margin: 9px 0; }
+
+.benefit p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* EMPLOYERS */
+.cta {
+  background: #11274d;
+  color: white;
+  text-align: center;
+}
+
+.cta p { color: #c8d8f0; }
+
+/* FOOTER */
+.footer {
+  background: #07172d;
+  color: #bdc9df;
+  padding: 35px 0;
+  font-size: 14px;
+}
+
+.foot-flex {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.foot-flex a { margin-right: 15px; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .jobs-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .benefits {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav {
+    padding: 15px 0;
+    flex-direction: column;
+  }
+
+  .links {
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .search { flex-direction: column; }
+
+  .categories {
+    grid-template-columns: 1fr;
+  }
+
+  .hero { padding: 55px 0; }
+
+  .job-foot { align-items: flex-start; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<header class="top">
+  <nav class="wrap nav">
+    <a href="#top" class="logo">
+      Remote<span>Hire</span>
+    </a>
+
+    <div class="links">
+      <a href="#jobs">Find Jobs</a>
+      <a href="#categories">Categories</a>
+      <a href="#benefits">Why RemoteHire</a>
+      <a href="#employers">Employers</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="wrap">
+      <h1>Find Your Dream Remote Job</h1>
+
+      <p>
+        Explore flexible opportunities across every category,
+        experience level and employment type.
+      </p>
+
+      <form id="searchForm" class="search">
+        <input
+          id="searchInput"
+          type="search"
+          aria-label="Search jobs"
+          placeholder="Job title, skill or company"
+        >
+
+        <select id="locationSearch" aria-label="Job location">
+          <option value="all">All Locations</option>
+          <option>Worldwide</option>
+          <option>USA</option>
+          <option>Europe</option>
+          <option>Africa</option>
+        </select>
+
+        <button class="btn" type="submit">
+          Search Jobs
+        </button>
+      </form>
+
+      <div class="stats">
+        <span id="totalJobs">0</span>
+        sample remote job opportunities
+      </div>
+    </div>
+  </section>
+
+  <!-- JOB CATEGORIES -->
+  <section id="categories" class="info">
+    <div class="wrap">
+      <h2 class="section-heading">Explore Job Categories</h2>
+
+      <p class="subtitle">
+        Every category has opportunities across different
+        work arrangements and experience levels.
+      </p>
+
+      <div id="categoryGrid" class="categories"></div>
+    </div>
+  </section>
+
+  <!-- REMOTE JOB LISTINGS -->
+  <section id="jobs">
+    <div class="wrap">
+      <h2 class="section-heading">Remote Job Listings</h2>
+
+      <p class="subtitle">
+        Filter jobs by category, employment type,
+        experience and location.
+      </p>
+
+      <div class="jobs-layout">
+
+        <!-- FILTER SIDEBAR -->
+        <aside class="filters">
+          <h3>Filter Jobs</h3>
+
+          <div class="field">
+            <label for="categoryFilter">Job Category</label>
+            <select id="categoryFilter">
+              <option value="all">All Categories</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="typeFilter">Employment Type</label>
+            <select id="typeFilter">
+              <option value="all">All Types</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="levelFilter">Experience Level</label>
+            <select id="levelFilter">
+              <option value="all">All Levels</option>
+            </select>
+          </div>
+
+          <button
+            class="btn outline"
+            id="resetFilters"
+            type="button"
+          >
+            Reset Filters
+          </button>
+        </aside>
+
+        <!-- JOB RESULTS -->
+        <div>
+          <div class="results-head">
+            <span id="resultCount" aria-live="polite"></span>
+            <span>Sample listings</span>
+          </div>
+
+          <div id="jobList" class="job-list"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section id="benefits" class="info">
+    <div class="wrap">
+      <h2 class="section-heading">Why RemoteHire?</h2>
+
+      <div class="benefits">
+        <div class="benefit">
+          <h3>🌍 Global Opportunities</h3>
+          <p>
+            Browse jobs with clear remote-location eligibility.
+          </p>
+        </div>
+
+        <div class="benefit">
+          <h3>🔎 Smarter Filtering</h3>
+          <p>
+            Find roles by career field, schedule and seniority.
+          </p>
+        </div>
+
+        <div class="benefit">
+          <h3>💼 Career Flexibility</h3>
+          <p>
+            Explore full-time, part-time, contract
+            and freelance paths.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMPLOYERS -->
+  <section id="employers" class="cta">
+    <div class="wrap">
+      <h2>Hire Remote Talent</h2>
+      <p>
+        Employer posting and application features can be
+        enabled when a live backend is connected.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap foot-flex">
+    <div>
+      <strong>RemoteHire</strong>
+      <p>Demonstration remote jobs directory.</p>
+    </div>
+
+    <div>
+      <a href="#jobs">Find Jobs</a>
+      <a href="#categories">Categories</a>
+      <a href="#benefits">About</a>
+    </div>
+  </div>
+</footer>
+
+<!-- JAVASCRIPT -->
+<script>
+"use strict";
+
+/* =====================================
+   JOB CATEGORIES
+===================================== */
+
+const categories = [
+  {
+    name: "Development",
+    label: "Software Development",
+    icon: "💻",
+    roles: [
+      "Frontend Developer",
+      "Backend Developer",
+      "Full Stack Developer"
+    ]
+  },
+  {
+    name: "Marketing",
+    label: "Digital Marketing",
+    icon: "📈",
+    roles: [
+      "SEO Specialist",
+      "Social Media Manager",
+      "Paid Ads Specialist"
+    ]
+  },
+  {
+    name: "Design",
+    label: "Design & Creative",
+    icon: "🎨",
+    roles: [
+      "Graphic Designer",
+      "UI/UX Designer",
+      "Brand Designer"
+    ]
+  },
+  {
+    name: "Customer Support",
+    label: "Customer Support",
+    icon: "🎧",
+    roles: [
+      "Customer Support Agent",
+      "Live Chat Specialist",
+      "Customer Success Associate"
+    ]
+  },
+  {
+    name: "Writing",
+    label: "Writing & Content",
+    icon: "✍️",
+    roles: [
+      "Content Writer",
+      "Copywriter",
+      "Technical Writer"
+    ]
+  },
+  {
+    name: "Data",
+    label: "Data & Analytics",
+    icon: "📊",
+    roles: [
+      "Data Analyst",
+      "Reporting Specialist",
+      "Business Intelligence Analyst"
+    ]
+  },
+  {
+    name: "Sales",
+    label: "Sales & Business",
+    icon: "🤝",
+    roles: [
+      "Sales Representative",
+      "Lead Generation Specialist",
+      "Account Executive"
+    ]
+  },
+  {
+    name: "Virtual Assistant",
+    label: "Virtual Assistant",
+    icon: "📅",
+    roles: [
+      "Executive Assistant",
+      "Administrative Assistant",
+      "Operations Assistant"
+    ]
+  }
+];
+
+/* =====================================
+   EMPLOYMENT TYPES AND LEVELS
+===================================== */
+
+const types = [
+  "Full-time",
+  "Part-time",
+  "Contract",
+  "Freelance"
+];
+
+const levels = [
+  "Entry Level",
+  "Mid Level",
+  "Senior Level"
+];
+
+const locations = [
+  "Worldwide",
+  "USA",
+  "Europe",
+  "Africa"
+];
+
+const companies = [
+  "Northstar Digital",
+  "BluePeak Studio",
+  "Summit Works",
+  "Orbit Labs",
+  "BrightPath Group",
+  "Horizon Connect"
+];
+
+/* =====================================
+   JOB DESCRIPTIONS
+===================================== */
+
+const descriptions = {
+  Development:
+    "Build and maintain web applications, collaborate with distributed teams, and improve user experiences.",
+
+  Marketing:
+    "Plan campaigns, measure performance and help brands reach customers through digital channels.",
+
+  Design:
+    "Create polished visual experiences, collaborate with stakeholders and deliver thoughtful design solutions.",
+
+  "Customer Support":
+    "Help customers resolve questions through email, chat and other remote support channels.",
+
+  Writing:
+    "Produce clear, engaging content, research topics and meet editorial deadlines.",
+
+  Data:
+    "Analyze datasets, build reports and communicate useful insights to business teams.",
+
+  Sales:
+    "Research prospects, build relationships and support revenue growth with structured outreach.",
+
+  "Virtual Assistant":
+    "Coordinate schedules, organize documents and provide reliable administrative support remotely."
+};
+
+/* =====================================
+   GENERATE 96 DEMONSTRATION JOBS
+   8 categories x 4 types x 3 levels
+===================================== */
+
+const jobs = [];
+let nextId = 1;
+
+categories.forEach((category, c) => {
+  types.forEach((type, t) => {
+    levels.forEach((level, l) => {
+
+      const base = [900, 2200, 4200][l]
+        + t * 125
+        + c * 65;
+
+      const company = companies[
+        (c + t + l) % companies.length
+      ];
+
+      const title = category.roles[
+        (t + l) % category.roles.length
+      ];
+
+      const location = locations[
+        (c + t + l) % locations.length
+      ];
+
+      const salaryMax = base + [600, 1000, 1600][l];
+
+      jobs.push({
+        id: nextId++,
+        title,
+        company,
+        category: category.name,
+        type,
+        level,
+        location,
+        salary:
+          `$${base.toLocaleString()}–$${salaryMax.toLocaleString()} / month (illustrative)`,
+        description: descriptions[category.name],
+        initials: company
+          .split(" ")
+          .map(word => word[0])
+          .join("")
+      });
+
+    });
+  });
+});
+
+/* =====================================
+   DOM ELEMENTS
+===================================== */
+
+const $ = id => document.getElementById(id);
+
+const categoryFilter = $("categoryFilter");
+const typeFilter = $("typeFilter");
+const levelFilter = $("levelFilter");
+const locationSearch = $("locationSearch");
+const searchInput = $("searchInput");
+
+/* =====================================
+   HELPER FUNCTIONS
+===================================== */
+
+function el(tag, className, value) {
+  const node = document.createElement(tag);
+
+  if (className) {
+    node.className = className;
+  }
+
+  if (value !== undefined) {
+    node.textContent = value;
+  }
+
+  return node;
+}
+
+function addOptions(select, values) {
+  values.forEach(value => {
+    const option = document.createElement("option");
+
+    option.value = value;
+    option.textContent = value;
+
+    select.append(option);
+  });
+}
+
+/* =====================================
+   POPULATE FILTER DROPDOWNS
+===================================== */
+
+addOptions(
+  categoryFilter,
+  categories.map(category => category.name)
+);
+
+addOptions(typeFilter, types);
+addOptions(levelFilter, levels);
+
+/* =====================================
+   DISPLAY CATEGORY CARDS
+===================================== */
+
+const grid = $("categoryGrid");
+
+categories.forEach(category => {
+  const button = el("button", "category");
+  button.type = "button";
+
+  const categoryCount = jobs.filter(
+    job => job.category === category.name
+  ).length;
+
+  button.append(
+    el("span", "emoji", category.icon),
+    el("strong", "", category.label),
+    el("small", "", `${categoryCount} sample jobs`)
+  );
+
+  button.addEventListener("click", () => {
+    categoryFilter.value = category.name;
+
+    renderJobs();
+
+    $("jobs").scrollIntoView({
+      behavior: "smooth"
+    });
+  });
+
+  grid.append(button);
+});
+
+/* =====================================
+   CREATE JOB CARD
+===================================== */
+
+function createJobCard(job) {
+  const article = el("article", "job");
+
+  const head = el("div", "job-head");
+  const avatar = el("div", "avatar", job.initials);
+  const titleBox = el("div");
+
+  titleBox.append(
+    el("h3", "", job.title),
+    el("span", "company", job.company)
+  );
+
+  head.append(avatar, titleBox);
+
+  const tags = el("div", "tags");
+
+  [
+    job.category,
+    job.type,
+    job.level,
+    job.location
+  ].forEach(value => {
+    tags.append(el("span", "tag", value));
+  });
+
+  const description = el(
+    "p",
+    "desc",
+    job.description
+  );
+
+  const footer = el("div", "job-foot");
+
+  const salary = el(
+    "span",
+    "salary",
+    job.salary
+  );
+
+  const status = el(
+    "span",
+    "demo",
+    "Demo listing — applications not enabled"
+  );
+
+  footer.append(salary, status);
+
+  article.append(
+    head,
+    tags,
+    description,
+    footer
+  );
+
+  return article;
+}
+
+/* =====================================
+   FILTER AND DISPLAY JOBS
+===================================== */
+
+function renderJobs() {
+  const query = searchInput.value
+    .trim()
+    .toLowerCase();
+
+  const filteredJobs = jobs.filter(job => {
+
+    const categoryMatch =
+      categoryFilter.value === "all" ||
+      job.category === categoryFilter.value;
+
+    const typeMatch =
+      typeFilter.value === "all" ||
+      job.type === typeFilter.value;
+
+    const levelMatch =
+      levelFilter.value === "all" ||
+      job.level === levelFilter.value;
+
+    const locationMatch =
+      locationSearch.value === "all" ||
+      job.location === locationSearch.value;
+
+    const searchText = [
+      job.title,
+      job.company,
+      job.category,
+      job.description
+    ].join(" ").toLowerCase();
+
+    const searchMatch = searchText.includes(query);
+
+    return (
+      categoryMatch &&
+      typeMatch &&
+      levelMatch &&
+      locationMatch &&
+      searchMatch
+    );
+  });
+
+  $("resultCount").textContent =
+    `${filteredJobs.length} demonstration job(s) found`;
+
+  const jobList = $("jobList");
+  jobList.replaceChildren();
+
+  if (filteredJobs.length === 0) {
+    jobList.append(
+      el(
+        "div",
+        "empty",
+        "No jobs match all selected filters. Try changing the location or search keyword."
+      )
+    );
+    return;
+  }
+
+  const fragment = document.createDocumentFragment();
+
+  filteredJobs.forEach(job => {
+    fragment.append(createJobCard(job));
+  });
+
+  jobList.append(fragment);
+}
+
+/* =====================================
+   LIVE FILTER EVENTS
+===================================== */
+
+[
+  categoryFilter,
+  typeFilter,
+  levelFilter,
+  locationSearch
+].forEach(control => {
+  control.addEventListener("change", renderJobs);
+});
+
+searchInput.addEventListener("input", renderJobs);
+
+/* =====================================
+   SEARCH FORM
+===================================== */
+
+$("searchForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  renderJobs();
+
+  $("jobs").scrollIntoView({
+    behavior: "smooth"
+  });
+});
+
+/* =====================================
+   RESET ALL FILTERS
+===================================== */
+
+$("resetFilters").addEventListener("click", () => {
+  categoryFilter.value = "all";
+  typeFilter.value = "all";
+  levelFilter.value = "all";
+  locationSearch.value = "all";
+  searchInput.value = "";
+
+  renderJobs();
+});
+
+/* =====================================
+   INITIALIZE WEBSITE
+===================================== */
+
+$("totalJobs").textContent = jobs.length;
+
+renderJobs();
+
+</script>
+
+</body>
+</html>
