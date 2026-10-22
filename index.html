@@ -8,11 +8,12 @@
 
 <style>
 :root {
-  --blue: #285cff;
-  --navy: #091b3c;
-  --muted: #607394;
-  --bg: #edf3fa;
-  --line: #dce5f2;
+  --blue: #285cf6;
+  --navy: #102244;
+  --muted: #63738e;
+  --bg: #f1f5fb;
+  --border: #dce5f1;
+  --green: #07835b;
 }
 
 * { box-sizing: border-box; }
@@ -21,62 +22,86 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, sans-serif;
   color: var(--navy);
   background: var(--bg);
+  line-height: 1.6;
 }
 
-button, input, select { font: inherit; }
-button { cursor: pointer; }
-a { color: inherit; text-decoration: none; }
+button, input, select, textarea {
+  font: inherit;
+}
 
-.wrap {
-  max-width: 1150px;
+button { cursor: pointer; }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  max-width: 1180px;
   margin: auto;
-  padding: 0 22px;
+  padding: 0 20px;
 }
 
 /* NAVIGATION */
-.top {
-  background: #fff;
-  border-bottom: 1px solid var(--line);
+header {
+  background: white;
+  border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
   z-index: 10;
 }
 
-.nav {
+.navbar {
+  min-height: 75px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 76px;
-  gap: 18px;
+  gap: 20px;
 }
 
 .logo {
-  font-weight: 800;
   font-size: 27px;
+  font-weight: 800;
   color: var(--blue);
 }
 
 .logo span { color: var(--navy); }
 
-.links {
+.nav-links {
   display: flex;
-  gap: 28px;
-  font-size: 14px;
-  font-weight: 700;
+  gap: 24px;
   flex-wrap: wrap;
+  font-size: 14px;
+  font-weight: bold;
 }
 
-.links a:hover { color: var(--blue); }
+/* BUTTONS */
+.btn {
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--blue);
+  color: white;
+  font-weight: bold;
+}
+
+.btn:hover { background: #1949ce; }
+
+.btn-outline {
+  background: white;
+  color: var(--blue);
+  border: 1px solid var(--blue);
+}
 
 /* HERO */
 .hero {
-  background: linear-gradient(115deg, #11274d, #2456a5);
+  background: linear-gradient(120deg, #112548, #285ba6);
   color: white;
+  padding: 80px 0;
   text-align: center;
-  padding: 75px 0;
 }
 
 .hero h1 {
@@ -84,322 +109,305 @@ a { color: inherit; text-decoration: none; }
   margin: 0 0 15px;
 }
 
+.hero h1 span { color: #a8c7ff; }
+
 .hero p {
-  color: #dbe8ff;
+  max-width: 650px;
   margin: 0 auto 25px;
-  max-width: 670px;
+  color: #dce8fc;
 }
 
-.search {
+.search-box {
   display: flex;
   gap: 10px;
-  max-width: 830px;
-  margin: auto;
   background: white;
   padding: 12px;
-  border-radius: 14px;
+  border-radius: 12px;
+  max-width: 850px;
+  margin: auto;
 }
 
-.search input,
-.search select {
-  padding: 14px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  min-width: 0;
+.search-box input,
+.search-box select {
   flex: 1;
-  color: var(--navy);
+  min-width: 0;
+  padding: 13px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
 }
 
-.btn {
-  border: 0;
-  border-radius: 9px;
-  padding: 12px 19px;
-  background: var(--blue);
-  color: #fff;
-  font-weight: 700;
-}
-
-.btn:hover { background: #1746d5; }
-
-.outline {
-  background: white;
-  color: var(--blue);
-  border: 1px solid var(--blue);
-}
-
-.outline:hover { background: #eff4ff; }
-
-.stats {
-  margin-top: 26px;
-  font-weight: 700;
-  color: #eaf2ff;
-}
+.stats { margin-top: 25px; }
 
 /* SECTIONS */
-section { padding: 55px 0; }
+section { padding: 60px 0; }
 
-.section-heading {
+.section-title {
   font-size: 29px;
   margin: 0 0 10px;
 }
 
 .subtitle {
   color: var(--muted);
-  margin: 0 0 26px;
+  margin-bottom: 28px;
 }
 
-.info { background: #fff; }
+.white { background: white; }
 
-/* CATEGORIES */
-.categories {
+/* DIGITAL SKILLS */
+.skill-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 15px;
 }
 
-.category {
-  border: 1px solid var(--line);
-  border-radius: 12px;
+.skill-card {
   background: white;
-  text-align: left;
+  border: 1px solid var(--border);
+  border-radius: 12px;
   padding: 22px;
+  text-align: left;
   color: var(--navy);
 }
 
-.category:hover,
-.category:focus-visible {
+.skill-card:hover {
   border-color: var(--blue);
-  box-shadow: 0 5px 20px #183c8214;
+  box-shadow: 0 6px 20px #00000010;
 }
 
-.category .emoji {
-  font-size: 28px;
+.skill-icon {
+  font-size: 29px;
   display: block;
-  margin-bottom: 8px;
 }
 
-.category strong {
+.skill-card strong {
   display: block;
-  margin-bottom: 5px;
+  margin-top: 10px;
 }
 
-.category small { color: var(--muted); }
+.skill-card small { color: var(--muted); }
 
-/* JOBS LAYOUT */
-.jobs-layout {
+/* JOB SECTION */
+.job-layout {
   display: grid;
   grid-template-columns: 250px 1fr;
-  gap: 25px;
+  gap: 24px;
 }
 
 .filters,
-.job,
-.empty {
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 14px;
+.job-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 13px;
 }
 
 .filters {
   padding: 24px;
-  align-self: start;
+  height: fit-content;
 }
 
-.filters h3 { margin: 0 0 22px; }
+.filter-group { margin-bottom: 20px; }
 
-.field { margin-bottom: 23px; }
-
-.field label {
+.filter-group label {
   display: block;
-  font-weight: 700;
+  font-weight: bold;
+  margin-bottom: 8px;
   font-size: 14px;
-  margin-bottom: 9px;
 }
 
-.field select {
+.filter-group select {
   width: 100%;
   padding: 12px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border);
   border-radius: 8px;
   background: white;
-  color: var(--navy);
-}
-
-.results-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 17px;
-  color: var(--muted);
 }
 
 .job-list {
   display: grid;
-  gap: 16px;
+  gap: 17px;
 }
 
-/* JOB CARDS */
-.job { padding: 24px; }
+.job-card { padding: 24px; }
 
-.job-head {
+.job-header {
   display: flex;
   gap: 15px;
   align-items: center;
 }
 
-.avatar {
-  width: 53px;
-  height: 53px;
-  flex-shrink: 0;
+.company-icon {
+  width: 54px;
+  height: 54px;
   border-radius: 12px;
-  background: #e6eeff;
+  background: #e8efff;
+  color: var(--blue);
   display: grid;
   place-items: center;
-  color: var(--blue);
-  font-weight: 800;
+  font-size: 24px;
 }
 
-.job h3 {
-  margin: 0 0 5px;
-  font-size: 19px;
-}
+.job-header h3 { margin: 0; }
 
-.company {
+.company-name {
   color: var(--muted);
   font-size: 14px;
 }
 
 .tags {
   display: flex;
-  gap: 8px;
   flex-wrap: wrap;
+  gap: 8px;
   margin: 17px 0;
 }
 
 .tag {
-  font-size: 12px;
-  font-weight: 700;
-  background: #eff5ff;
-  color: #2555b9;
-  border-radius: 6px;
+  background: #edf3ff;
+  color: #2553b6;
   padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: bold;
 }
 
-.desc {
+.description {
   color: var(--muted);
   font-size: 14px;
-  line-height: 1.6;
-  margin: 0 0 16px;
 }
 
-.job-foot {
-  border-top: 1px solid var(--line);
-  padding-top: 15px;
+.job-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 15px;
   flex-wrap: wrap;
+  border-top: 1px solid var(--border);
+  margin-top: 18px;
+  padding-top: 18px;
 }
 
 .salary {
-  color: #078258;
-  font-weight: 800;
+  color: var(--green);
+  font-weight: bold;
 }
 
-.demo {
-  font-size: 12px;
-  color: var(--muted);
+/* APPLICATION MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #07152bd9;
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
 }
 
-.empty {
-  text-align: center;
-  padding: 35px;
-  color: var(--muted);
+.modal.active { display: flex; }
+
+.modal-content {
+  background: white;
+  border-radius: 15px;
+  padding: 28px;
+  width: 100%;
+  max-width: 620px;
+  max-height: 95vh;
+  overflow-y: auto;
 }
 
-/* BENEFITS */
-.benefits {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-}
-
-.benefit {
-  padding: 25px;
-  background: var(--bg);
-  border-radius: 12px;
-}
-
-.benefit h3 { margin: 9px 0; }
-
-.benefit p {
-  color: var(--muted);
-  font-size: 14px;
-}
-
-/* EMPLOYERS */
-.cta {
-  background: #11274d;
-  color: white;
-  text-align: center;
-}
-
-.cta p { color: #c8d8f0; }
-
-/* FOOTER */
-.footer {
-  background: #07172d;
-  color: #bdc9df;
-  padding: 35px 0;
-  font-size: 14px;
-}
-
-.foot-flex {
+.modal-header {
   display: flex;
   justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
+  align-items: center;
 }
 
-.foot-flex a { margin-right: 15px; }
+.close-modal {
+  border: none;
+  background: #edf2f9;
+  padding: 7px 13px;
+  border-radius: 8px;
+  font-size: 22px;
+}
+
+.application-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.form-group textarea {
+  min-height: 100px;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.notice {
+  background: #eef4ff;
+  padding: 12px;
+  border-radius: 8px;
+  color: #274779;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+#formStatus { font-size: 14px; }
+
+/* FOOTER */
+footer {
+  background: #07172e;
+  color: #b9c9df;
+  padding: 40px 0;
+  text-align: center;
+}
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
-  .categories {
+  .skill-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .jobs-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .benefits {
+  .job-layout {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 600px) {
-  .nav {
-    padding: 15px 0;
+  .navbar {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .search-box {
     flex-direction: column;
   }
 
-  .links {
-    justify-content: center;
-    gap: 14px;
-  }
-
-  .search { flex-direction: column; }
-
-  .categories {
+  .skill-grid {
     grid-template-columns: 1fr;
   }
 
-  .hero { padding: 55px 0; }
+  .application-form {
+    grid-template-columns: 1fr;
+  }
 
-  .job-foot { align-items: flex-start; }
+  .full-width {
+    grid-column: auto;
+  }
 }
 </style>
 </head>
@@ -407,298 +415,353 @@ section { padding: 55px 0; }
 <body>
 
 <!-- NAVIGATION -->
-<header class="top">
-  <nav class="wrap nav">
-    <a href="#top" class="logo">
+<header>
+  <nav class="container navbar">
+    <a href="#" class="logo">
       Remote<span>Hire</span>
     </a>
 
-    <div class="links">
+    <div class="nav-links">
       <a href="#jobs">Find Jobs</a>
-      <a href="#categories">Categories</a>
-      <a href="#benefits">Why RemoteHire</a>
-      <a href="#employers">Employers</a>
+      <a href="#skills">Digital Skills</a>
+      <a href="#about">About</a>
+      <a href="#apply">Apply</a>
     </div>
   </nav>
 </header>
 
-<main id="top">
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <h1>Find Your Dream <span>Remote Job</span></h1>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <div class="wrap">
-      <h1>Find Your Dream Remote Job</h1>
+    <p>
+      Discover remote career opportunities across
+      20 digital skills and apply with your CV or résumé.
+    </p>
 
-      <p>
-        Explore flexible opportunities across every category,
-        experience level and employment type.
-      </p>
+    <form class="search-box" id="searchForm">
+      <input
+        id="searchInput"
+        type="search"
+        placeholder="Search jobs or digital skills"
+        aria-label="Search jobs"
+      >
 
-      <form id="searchForm" class="search">
-        <input
-          id="searchInput"
-          type="search"
-          aria-label="Search jobs"
-          placeholder="Job title, skill or company"
-        >
+      <select id="locationFilter">
+        <option value="all">All Locations</option>
+        <option>Worldwide</option>
+        <option>USA</option>
+        <option>Europe</option>
+        <option>Africa</option>
+      </select>
 
-        <select id="locationSearch" aria-label="Job location">
-          <option value="all">All Locations</option>
-          <option>Worldwide</option>
-          <option>USA</option>
-          <option>Europe</option>
-          <option>Africa</option>
-        </select>
+      <button class="btn" type="submit">
+        Search Jobs
+      </button>
+    </form>
 
-        <button class="btn" type="submit">
-          Search Jobs
+    <div class="stats">
+      <strong id="totalJobs">0</strong>
+      sample remote job opportunities
+    </div>
+  </div>
+</section>
+
+<!-- DIGITAL SKILLS -->
+<section id="skills" class="white">
+  <div class="container">
+    <h2 class="section-title">Explore 20 Digital Skills</h2>
+
+    <p class="subtitle">
+      Choose a digital skill to explore related jobs.
+    </p>
+
+    <div class="skill-grid" id="skillGrid"></div>
+  </div>
+</section>
+
+<!-- JOB LISTINGS -->
+<section id="jobs">
+  <div class="container">
+    <h2 class="section-title">Latest Remote Jobs</h2>
+
+    <p class="subtitle">
+      Find jobs by digital skill, employment type,
+      experience level and location.
+    </p>
+
+    <div class="job-layout">
+
+      <!-- FILTERS -->
+      <aside class="filters">
+        <h3>Filter Jobs</h3>
+
+        <div class="filter-group">
+          <label for="categoryFilter">Digital Skill</label>
+          <select id="categoryFilter">
+            <option value="all">All Digital Skills</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="typeFilter">Employment Type</label>
+          <select id="typeFilter">
+            <option value="all">All Employment Types</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="levelFilter">Experience Level</label>
+          <select id="levelFilter">
+            <option value="all">All Experience Levels</option>
+          </select>
+        </div>
+
+        <button class="btn btn-outline" id="resetFilters">
+          Reset Filters
         </button>
-      </form>
+      </aside>
 
-      <div class="stats">
-        <span id="totalJobs">0</span>
-        sample remote job opportunities
-      </div>
-    </div>
-  </section>
+      <!-- JOB RESULTS -->
+      <div>
+        <p id="resultCount" aria-live="polite"></p>
 
-  <!-- JOB CATEGORIES -->
-  <section id="categories" class="info">
-    <div class="wrap">
-      <h2 class="section-heading">Explore Job Categories</h2>
+        <div class="job-list" id="jobList"></div>
 
-      <p class="subtitle">
-        Every category has opportunities across different
-        work arrangements and experience levels.
-      </p>
-
-      <div id="categoryGrid" class="categories"></div>
-    </div>
-  </section>
-
-  <!-- REMOTE JOB LISTINGS -->
-  <section id="jobs">
-    <div class="wrap">
-      <h2 class="section-heading">Remote Job Listings</h2>
-
-      <p class="subtitle">
-        Filter jobs by category, employment type,
-        experience and location.
-      </p>
-
-      <div class="jobs-layout">
-
-        <!-- FILTER SIDEBAR -->
-        <aside class="filters">
-          <h3>Filter Jobs</h3>
-
-          <div class="field">
-            <label for="categoryFilter">Job Category</label>
-            <select id="categoryFilter">
-              <option value="all">All Categories</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label for="typeFilter">Employment Type</label>
-            <select id="typeFilter">
-              <option value="all">All Types</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label for="levelFilter">Experience Level</label>
-            <select id="levelFilter">
-              <option value="all">All Levels</option>
-            </select>
-          </div>
-
-          <button
-            class="btn outline"
-            id="resetFilters"
-            type="button"
-          >
-            Reset Filters
+        <div style="text-align:center;margin-top:25px;">
+          <button class="btn" id="loadMore" hidden>
+            Load More Jobs
           </button>
-        </aside>
+        </div>
+      </div>
 
-        <!-- JOB RESULTS -->
-        <div>
-          <div class="results-head">
-            <span id="resultCount" aria-live="polite"></span>
-            <span>Sample listings</span>
-          </div>
+    </div>
+  </div>
+</section>
 
-          <div id="jobList" class="job-list"></div>
+<!-- ABOUT -->
+<section id="about" class="white">
+  <div class="container">
+    <h2 class="section-title">Why Choose RemoteHire?</h2>
+
+    <p class="subtitle">
+      Explore digital careers, discover flexible work
+      opportunities, and prepare your job applications.
+    </p>
+  </div>
+</section>
+
+<!-- APPLY INFORMATION -->
+<section id="apply">
+  <div class="container">
+    <h2 class="section-title">Apply for Remote Jobs</h2>
+
+    <p>
+      Browse a job and click Apply Now to open
+      the application form and attach your CV.
+    </p>
+
+    <p class="subtitle">
+      This demonstration does not send applications
+      to real employers.
+    </p>
+
+    <a class="btn" href="#jobs">Browse Jobs</a>
+  </div>
+</section>
+
+<!-- APPLICATION MODAL -->
+<div
+  class="modal"
+  id="applicationModal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="applicationTitle"
+  aria-hidden="true"
+>
+  <div class="modal-content">
+
+    <div class="modal-header">
+      <h2 id="applicationTitle">Job Application</h2>
+
+      <button
+        class="close-modal"
+        id="closeModal"
+        type="button"
+        aria-label="Close application"
+      >
+        &times;
+      </button>
+    </div>
+
+    <p id="selectedJob"></p>
+
+    <div class="notice">
+      Demonstration form: your information and CV
+      will not be sent to an employer or stored online.
+    </div>
+
+    <form id="applicationForm">
+
+      <div class="application-form">
+
+        <div class="form-group">
+          <label for="fullName">Full Name *</label>
+          <input
+            id="fullName"
+            name="fullName"
+            required
+            autocomplete="name"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            autocomplete="email"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number *</label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="country">Country *</label>
+          <input
+            id="country"
+            name="country"
+            required
+          >
+        </div>
+
+        <div class="form-group full-width">
+          <label for="portfolio">
+            Portfolio or LinkedIn URL
+          </label>
+
+          <input
+            id="portfolio"
+            name="portfolio"
+            type="url"
+            placeholder="https://example.com"
+          >
+        </div>
+
+        <div class="form-group full-width">
+          <label for="coverLetter">Cover Letter *</label>
+
+          <textarea
+            id="coverLetter"
+            name="coverLetter"
+            required
+            minlength="20"
+            placeholder="Explain why you are qualified."
+          ></textarea>
+        </div>
+
+        <div class="form-group full-width">
+          <label for="resume">Upload CV / Résumé *</label>
+
+          <input
+            id="resume"
+            name="resume"
+            type="file"
+            accept=".pdf,.doc,.docx"
+            required
+          >
+
+          <small>PDF, DOC or DOCX. Maximum 5 MB.</small>
+        </div>
+
+        <div class="form-group full-width">
+          <label>
+            <input
+              type="checkbox"
+              id="consent"
+              required
+            >
+            I understand this is a demo application.
+          </label>
+        </div>
+
+        <div class="full-width">
+          <button class="btn" type="submit">
+            Validate Application
+          </button>
         </div>
 
       </div>
-    </div>
-  </section>
 
-  <!-- BENEFITS -->
-  <section id="benefits" class="info">
-    <div class="wrap">
-      <h2 class="section-heading">Why RemoteHire?</h2>
+      <p id="formStatus" role="status" aria-live="polite"></p>
 
-      <div class="benefits">
-        <div class="benefit">
-          <h3>🌍 Global Opportunities</h3>
-          <p>
-            Browse jobs with clear remote-location eligibility.
-          </p>
-        </div>
-
-        <div class="benefit">
-          <h3>🔎 Smarter Filtering</h3>
-          <p>
-            Find roles by career field, schedule and seniority.
-          </p>
-        </div>
-
-        <div class="benefit">
-          <h3>💼 Career Flexibility</h3>
-          <p>
-            Explore full-time, part-time, contract
-            and freelance paths.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EMPLOYERS -->
-  <section id="employers" class="cta">
-    <div class="wrap">
-      <h2>Hire Remote Talent</h2>
-      <p>
-        Employer posting and application features can be
-        enabled when a live backend is connected.
-      </p>
-    </div>
-  </section>
-
-</main>
+    </form>
+  </div>
+</div>
 
 <!-- FOOTER -->
-<footer class="footer">
-  <div class="wrap foot-flex">
-    <div>
-      <strong>RemoteHire</strong>
-      <p>Demonstration remote jobs directory.</p>
-    </div>
-
-    <div>
-      <a href="#jobs">Find Jobs</a>
-      <a href="#categories">Categories</a>
-      <a href="#benefits">About</a>
-    </div>
+<footer>
+  <div class="container">
+    <h2>RemoteHire</h2>
+    <p>Explore Digital Skills and Remote Careers</p>
+    <p>All jobs displayed are fictional demonstration listings.</p>
+    <p>&copy; <span id="year"></span> RemoteHire</p>
   </div>
 </footer>
 
-<!-- JAVASCRIPT -->
 <script>
 "use strict";
 
-/* =====================================
-   JOB CATEGORIES
-===================================== */
+/* ====================================
+   20 DIGITAL SKILLS
+==================================== */
 
-const categories = [
-  {
-    name: "Development",
-    label: "Software Development",
-    icon: "💻",
-    roles: [
-      "Frontend Developer",
-      "Backend Developer",
-      "Full Stack Developer"
-    ]
-  },
-  {
-    name: "Marketing",
-    label: "Digital Marketing",
-    icon: "📈",
-    roles: [
-      "SEO Specialist",
-      "Social Media Manager",
-      "Paid Ads Specialist"
-    ]
-  },
-  {
-    name: "Design",
-    label: "Design & Creative",
-    icon: "🎨",
-    roles: [
-      "Graphic Designer",
-      "UI/UX Designer",
-      "Brand Designer"
-    ]
-  },
-  {
-    name: "Customer Support",
-    label: "Customer Support",
-    icon: "🎧",
-    roles: [
-      "Customer Support Agent",
-      "Live Chat Specialist",
-      "Customer Success Associate"
-    ]
-  },
-  {
-    name: "Writing",
-    label: "Writing & Content",
-    icon: "✍️",
-    roles: [
-      "Content Writer",
-      "Copywriter",
-      "Technical Writer"
-    ]
-  },
-  {
-    name: "Data",
-    label: "Data & Analytics",
-    icon: "📊",
-    roles: [
-      "Data Analyst",
-      "Reporting Specialist",
-      "Business Intelligence Analyst"
-    ]
-  },
-  {
-    name: "Sales",
-    label: "Sales & Business",
-    icon: "🤝",
-    roles: [
-      "Sales Representative",
-      "Lead Generation Specialist",
-      "Account Executive"
-    ]
-  },
-  {
-    name: "Virtual Assistant",
-    label: "Virtual Assistant",
-    icon: "📅",
-    roles: [
-      "Executive Assistant",
-      "Administrative Assistant",
-      "Operations Assistant"
-    ]
-  }
+const skills = [
+  ["Website Design", "🌐", "Website Designer"],
+  ["Web Development", "💻", "Web Developer"],
+  ["UI/UX Design", "🎨", "UI/UX Designer"],
+  ["Graphic Design", "🖌️", "Graphic Designer"],
+  ["SEO", "🔎", "SEO Specialist"],
+  ["Social Media Marketing", "📱", "Social Media Manager"],
+  ["Paid Advertising", "📣", "Paid Ads Specialist"],
+  ["Content Writing", "✍️", "Content Writer"],
+  ["Copywriting", "📝", "Copywriter"],
+  ["Video Editing", "🎬", "Video Editor"],
+  ["Motion Graphics", "🎞️", "Motion Graphics Designer"],
+  ["Data Analysis", "📊", "Data Analyst"],
+  ["Cybersecurity", "🔐", "Cybersecurity Analyst"],
+  ["Cloud Computing", "☁️", "Cloud Engineer"],
+  ["AI Automation", "🤖", "AI Automation Specialist"],
+  ["Email Marketing", "✉️", "Email Marketing Specialist"],
+  ["Virtual Assistance", "📅", "Virtual Assistant"],
+  ["Customer Support", "🎧", "Customer Support Specialist"],
+  ["Sales & Lead Generation", "🤝", "Sales Representative"],
+  ["E-commerce Management", "🛒", "E-commerce Manager"]
 ];
 
-/* =====================================
-   EMPLOYMENT TYPES AND LEVELS
-===================================== */
+/* ====================================
+   JOB OPTIONS
+==================================== */
 
-const types = [
+const employmentTypes = [
   "Full-time",
   "Part-time",
   "Contract",
   "Freelance"
 ];
 
-const levels = [
+const experienceLevels = [
   "Entry Level",
   "Mid Level",
   "Senior Level"
@@ -711,201 +774,154 @@ const locations = [
   "Africa"
 ];
 
-const companies = [
-  "Northstar Digital",
-  "BluePeak Studio",
-  "Summit Works",
-  "Orbit Labs",
-  "BrightPath Group",
-  "Horizon Connect"
-];
-
-/* =====================================
-   JOB DESCRIPTIONS
-===================================== */
-
-const descriptions = {
-  Development:
-    "Build and maintain web applications, collaborate with distributed teams, and improve user experiences.",
-
-  Marketing:
-    "Plan campaigns, measure performance and help brands reach customers through digital channels.",
-
-  Design:
-    "Create polished visual experiences, collaborate with stakeholders and deliver thoughtful design solutions.",
-
-  "Customer Support":
-    "Help customers resolve questions through email, chat and other remote support channels.",
-
-  Writing:
-    "Produce clear, engaging content, research topics and meet editorial deadlines.",
-
-  Data:
-    "Analyze datasets, build reports and communicate useful insights to business teams.",
-
-  Sales:
-    "Research prospects, build relationships and support revenue growth with structured outreach.",
-
-  "Virtual Assistant":
-    "Coordinate schedules, organize documents and provide reliable administrative support remotely."
-};
-
-/* =====================================
-   GENERATE 96 DEMONSTRATION JOBS
-   8 categories x 4 types x 3 levels
-===================================== */
+/* ====================================
+   GENERATE 240 SAMPLE JOBS
+==================================== */
 
 const jobs = [];
-let nextId = 1;
 
-categories.forEach((category, c) => {
-  types.forEach((type, t) => {
-    levels.forEach((level, l) => {
+let jobId = 1;
 
-      const base = [900, 2200, 4200][l]
-        + t * 125
-        + c * 65;
+skills.forEach((skill, skillIndex) => {
 
-      const company = companies[
-        (c + t + l) % companies.length
-      ];
+  employmentTypes.forEach((type, typeIndex) => {
 
-      const title = category.roles[
-        (t + l) % category.roles.length
-      ];
+    experienceLevels.forEach((level, levelIndex) => {
 
-      const location = locations[
-        (c + t + l) % locations.length
-      ];
+      const baseSalary =
+        [900, 2200, 4200][levelIndex] +
+        skillIndex * 55 +
+        typeIndex * 110;
 
-      const salaryMax = base + [600, 1000, 1600][l];
+      const maxSalary =
+        baseSalary + [700, 1300, 2100][levelIndex];
 
       jobs.push({
-        id: nextId++,
-        title,
-        company,
-        category: category.name,
-        type,
-        level,
-        location,
+        id: jobId++,
+        category: skill[0],
+        icon: skill[1],
+        title: skill[2],
+        company: "Demo Digital Studio " + (skillIndex + 1),
+        type: type,
+        level: level,
+        location: locations[
+          (skillIndex + typeIndex + levelIndex) % 4
+        ],
         salary:
-          `$${base.toLocaleString()}–$${salaryMax.toLocaleString()} / month (illustrative)`,
-        description: descriptions[category.name],
-        initials: company
-          .split(" ")
-          .map(word => word[0])
-          .join("")
+          "$" + baseSalary.toLocaleString() +
+          " - $" + maxSalary.toLocaleString() +
+          " / month (illustrative)",
+        description:
+          "Work remotely with a digital team, " +
+          "complete professional projects, and " +
+          "develop your career in " + skill[0] + "."
       });
 
     });
+
   });
+
 });
 
-/* =====================================
-   DOM ELEMENTS
-===================================== */
-
-const $ = id => document.getElementById(id);
-
-const categoryFilter = $("categoryFilter");
-const typeFilter = $("typeFilter");
-const levelFilter = $("levelFilter");
-const locationSearch = $("locationSearch");
-const searchInput = $("searchInput");
-
-/* =====================================
+/* ====================================
    HELPER FUNCTIONS
-===================================== */
+==================================== */
 
-function el(tag, className, value) {
-  const node = document.createElement(tag);
+const get = id => document.getElementById(id);
 
-  if (className) {
-    node.className = className;
+function createElement(tag, className, text) {
+  const element = document.createElement(tag);
+
+  if (className) element.className = className;
+
+  if (text !== undefined) {
+    element.textContent = text;
   }
 
-  if (value !== undefined) {
-    node.textContent = value;
-  }
-
-  return node;
+  return element;
 }
 
-function addOptions(select, values) {
+function populateSelect(selectId, values) {
+  const select = get(selectId);
+
   values.forEach(value => {
     const option = document.createElement("option");
 
     option.value = value;
     option.textContent = value;
 
-    select.append(option);
+    select.appendChild(option);
   });
 }
 
-/* =====================================
-   POPULATE FILTER DROPDOWNS
-===================================== */
+/* ====================================
+   POPULATE FILTERS
+==================================== */
 
-addOptions(
-  categoryFilter,
-  categories.map(category => category.name)
+populateSelect(
+  "categoryFilter",
+  skills.map(skill => skill[0])
 );
 
-addOptions(typeFilter, types);
-addOptions(levelFilter, levels);
+populateSelect("typeFilter", employmentTypes);
+populateSelect("levelFilter", experienceLevels);
 
-/* =====================================
-   DISPLAY CATEGORY CARDS
-===================================== */
+/* ====================================
+   DISPLAY SKILL CATEGORIES
+==================================== */
 
-const grid = $("categoryGrid");
+skills.forEach(skill => {
 
-categories.forEach(category => {
-  const button = el("button", "category");
-  button.type = "button";
+  const card = createElement("button", "skill-card");
+  card.type = "button";
 
-  const categoryCount = jobs.filter(
-    job => job.category === category.name
-  ).length;
-
-  button.append(
-    el("span", "emoji", category.icon),
-    el("strong", "", category.label),
-    el("small", "", `${categoryCount} sample jobs`)
+  card.append(
+    createElement("span", "skill-icon", skill[1]),
+    createElement("strong", "", skill[0]),
+    createElement("small", "", "12 sample jobs")
   );
 
-  button.addEventListener("click", () => {
-    categoryFilter.value = category.name;
+  card.addEventListener("click", () => {
+    get("categoryFilter").value = skill[0];
 
-    renderJobs();
+    visibleJobs = 12;
+    displayJobs();
 
-    $("jobs").scrollIntoView({
+    get("jobs").scrollIntoView({
       behavior: "smooth"
     });
   });
 
-  grid.append(button);
+  get("skillGrid").appendChild(card);
+
 });
 
-/* =====================================
-   CREATE JOB CARD
-===================================== */
+/* ====================================
+   JOB CARD GENERATOR
+==================================== */
 
 function createJobCard(job) {
-  const article = el("article", "job");
 
-  const head = el("div", "job-head");
-  const avatar = el("div", "avatar", job.initials);
-  const titleBox = el("div");
+  const card = createElement("article", "job-card");
 
-  titleBox.append(
-    el("h3", "", job.title),
-    el("span", "company", job.company)
+  const header = createElement("div", "job-header");
+
+  const icon = createElement(
+    "div",
+    "company-icon",
+    job.icon
   );
 
-  head.append(avatar, titleBox);
+  const companyInfo = document.createElement("div");
 
-  const tags = el("div", "tags");
+  companyInfo.append(
+    createElement("h3", "", job.title),
+    createElement("p", "company-name", job.company)
+  );
+
+  header.append(icon, companyInfo);
+
+  const tags = createElement("div", "tags");
 
   [
     job.category,
@@ -913,162 +929,360 @@ function createJobCard(job) {
     job.level,
     job.location
   ].forEach(value => {
-    tags.append(el("span", "tag", value));
+    tags.appendChild(
+      createElement("span", "tag", value)
+    );
   });
 
-  const description = el(
+  const description = createElement(
     "p",
-    "desc",
+    "description",
     job.description
   );
 
-  const footer = el("div", "job-foot");
+  const footer = createElement("div", "job-footer");
 
-  const salary = el(
+  const salary = createElement(
     "span",
     "salary",
     job.salary
   );
 
-  const status = el(
-    "span",
-    "demo",
-    "Demo listing — applications not enabled"
+  const applyButton = createElement(
+    "button",
+    "btn",
+    "Apply Now"
   );
 
-  footer.append(salary, status);
+  applyButton.type = "button";
 
-  article.append(
-    head,
+  applyButton.addEventListener("click", () => {
+    openApplication(job);
+  });
+
+  footer.append(salary, applyButton);
+
+  card.append(
+    header,
     tags,
     description,
     footer
   );
 
-  return article;
+  return card;
 }
 
-/* =====================================
-   FILTER AND DISPLAY JOBS
-===================================== */
+/* ====================================
+   FILTER JOBS
+==================================== */
 
-function renderJobs() {
-  const query = searchInput.value
-    .trim()
-    .toLowerCase();
+let visibleJobs = 12;
+
+function displayJobs() {
+
+  const search = get("searchInput")
+    .value.toLowerCase().trim();
+
+  const category = get("categoryFilter").value;
+  const type = get("typeFilter").value;
+  const level = get("levelFilter").value;
+  const location = get("locationFilter").value;
 
   const filteredJobs = jobs.filter(job => {
 
-    const categoryMatch =
-      categoryFilter.value === "all" ||
-      job.category === categoryFilter.value;
-
-    const typeMatch =
-      typeFilter.value === "all" ||
-      job.type === typeFilter.value;
-
-    const levelMatch =
-      levelFilter.value === "all" ||
-      job.level === levelFilter.value;
-
-    const locationMatch =
-      locationSearch.value === "all" ||
-      job.location === locationSearch.value;
-
-    const searchText = [
+    const matchesSearch = [
       job.title,
-      job.company,
       job.category,
+      job.company,
       job.description
-    ].join(" ").toLowerCase();
+    ].join(" ").toLowerCase().includes(search);
 
-    const searchMatch = searchText.includes(query);
+    const matchesCategory =
+      category === "all" || job.category === category;
+
+    const matchesType =
+      type === "all" || job.type === type;
+
+    const matchesLevel =
+      level === "all" || job.level === level;
+
+    const matchesLocation =
+      location === "all" || job.location === location;
 
     return (
-      categoryMatch &&
-      typeMatch &&
-      levelMatch &&
-      locationMatch &&
-      searchMatch
+      matchesSearch &&
+      matchesCategory &&
+      matchesType &&
+      matchesLevel &&
+      matchesLocation
     );
+
   });
 
-  $("resultCount").textContent =
-    `${filteredJobs.length} demonstration job(s) found`;
+  const list = get("jobList");
+  list.replaceChildren();
 
-  const jobList = $("jobList");
-  jobList.replaceChildren();
+  get("resultCount").textContent =
+    filteredJobs.length + " demonstration jobs found";
 
   if (filteredJobs.length === 0) {
-    jobList.append(
-      el(
-        "div",
-        "empty",
-        "No jobs match all selected filters. Try changing the location or search keyword."
+
+    list.appendChild(
+      createElement(
+        "p",
+        "",
+        "No matching jobs found. Try resetting your filters."
       )
     );
-    return;
+
+  } else {
+
+    const fragment = document.createDocumentFragment();
+
+    filteredJobs.slice(0, visibleJobs).forEach(job => {
+      fragment.appendChild(createJobCard(job));
+    });
+
+    list.appendChild(fragment);
+
   }
 
-  const fragment = document.createDocumentFragment();
-
-  filteredJobs.forEach(job => {
-    fragment.append(createJobCard(job));
-  });
-
-  jobList.append(fragment);
+  get("loadMore").hidden =
+    filteredJobs.length <= visibleJobs;
 }
 
-/* =====================================
-   LIVE FILTER EVENTS
-===================================== */
+/* ====================================
+   FILTER EVENTS
+==================================== */
 
 [
-  categoryFilter,
-  typeFilter,
-  levelFilter,
-  locationSearch
-].forEach(control => {
-  control.addEventListener("change", renderJobs);
+  "categoryFilter",
+  "typeFilter",
+  "levelFilter",
+  "locationFilter"
+].forEach(id => {
+
+  get(id).addEventListener("change", () => {
+    visibleJobs = 12;
+    displayJobs();
+  });
+
 });
 
-searchInput.addEventListener("input", renderJobs);
+get("searchInput").addEventListener("input", () => {
+  visibleJobs = 12;
+  displayJobs();
+});
 
-/* =====================================
-   SEARCH FORM
-===================================== */
-
-$("searchForm").addEventListener("submit", event => {
+get("searchForm").addEventListener("submit", event => {
   event.preventDefault();
 
-  renderJobs();
+  displayJobs();
 
-  $("jobs").scrollIntoView({
+  get("jobs").scrollIntoView({
     behavior: "smooth"
   });
 });
 
-/* =====================================
-   RESET ALL FILTERS
-===================================== */
+/* ====================================
+   RESET FILTERS
+==================================== */
 
-$("resetFilters").addEventListener("click", () => {
-  categoryFilter.value = "all";
-  typeFilter.value = "all";
-  levelFilter.value = "all";
-  locationSearch.value = "all";
-  searchInput.value = "";
+get("resetFilters").addEventListener("click", () => {
 
-  renderJobs();
+  get("categoryFilter").value = "all";
+  get("typeFilter").value = "all";
+  get("levelFilter").value = "all";
+  get("locationFilter").value = "all";
+  get("searchInput").value = "";
+
+  visibleJobs = 12;
+  displayJobs();
+
 });
 
-/* =====================================
+/* ====================================
+   LOAD MORE JOBS
+==================================== */
+
+get("loadMore").addEventListener("click", () => {
+
+  visibleJobs += 12;
+  displayJobs();
+
+});
+
+/* ====================================
+   APPLICATION MODAL
+==================================== */
+
+let selectedJob = null;
+let previousFocus = null;
+
+function openApplication(job) {
+
+  selectedJob = job;
+  previousFocus = document.activeElement;
+
+  get("applicationForm").reset();
+  get("formStatus").textContent = "";
+
+  get("selectedJob").textContent =
+    job.title + " - " + job.company;
+
+  get("applicationModal").classList.add("active");
+  get("applicationModal").setAttribute(
+    "aria-hidden", "false"
+  );
+
+  document.body.style.overflow = "hidden";
+  get("closeModal").focus();
+}
+
+function closeApplication() {
+
+  get("applicationModal").classList.remove("active");
+  get("applicationModal").setAttribute(
+    "aria-hidden", "true"
+  );
+
+  document.body.style.overflow = "";
+  selectedJob = null;
+
+  if (previousFocus && previousFocus.isConnected) {
+    previousFocus.focus();
+  }
+}
+
+get("closeModal").addEventListener(
+  "click",
+  closeApplication
+);
+
+get("applicationModal").addEventListener(
+  "click",
+  event => {
+
+    if (event.target === get("applicationModal")) {
+      closeApplication();
+    }
+
+  }
+);
+
+document.addEventListener("keydown", event => {
+
+  const modal = get("applicationModal");
+
+  if (!modal.classList.contains("active")) return;
+
+  if (event.key === "Escape") {
+    closeApplication();
+    return;
+  }
+
+  if (event.key === "Tab") {
+
+    const focusable = Array.from(
+      modal.querySelectorAll(
+        "button:not([disabled]), input:not([disabled]), textarea:not([disabled])"
+      )
+    ).filter(element => element.getClientRects().length);
+
+    if (!focusable.length) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (
+      !event.shiftKey &&
+      document.activeElement === last
+    ) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+});
+
+/* ====================================
+   CV UPLOAD AND FORM VALIDATION
+==================================== */
+
+get("applicationForm").addEventListener(
+  "submit",
+  event => {
+
+    event.preventDefault();
+
+    const status = get("formStatus");
+    const resume = get("resume").files[0];
+
+    if (!selectedJob) {
+      status.textContent = "Please select a job.";
+      status.style.color = "red";
+      return;
+    }
+
+    if (!resume) {
+      status.textContent = "Please upload your CV.";
+      status.style.color = "red";
+      return;
+    }
+
+    const extension = resume.name
+      .split(".")
+      .pop()
+      .toLowerCase();
+
+    const allowedTypes = ["pdf", "doc", "docx"];
+
+    if (!allowedTypes.includes(extension)) {
+      status.textContent =
+        "Only PDF, DOC and DOCX files are allowed.";
+
+      status.style.color = "red";
+      return;
+    }
+
+    if (resume.size > 5 * 1024 * 1024) {
+      status.textContent =
+        "Your CV must be smaller than 5 MB.";
+
+      status.style.color = "red";
+      return;
+    }
+
+    if (resume.size === 0) {
+      status.textContent =
+        "The selected CV file is empty.";
+
+      status.style.color = "red";
+      return;
+    }
+
+    status.style.color = "green";
+
+    status.textContent =
+      "Your application for " +
+      selectedJob.title +
+      " passed validation. This is a demonstration: " +
+      "your application and CV have not been sent or saved.";
+
+  }
+);
+
+/* ====================================
    INITIALIZE WEBSITE
-===================================== */
+==================================== */
 
-$("totalJobs").textContent = jobs.length;
+get("totalJobs").textContent = jobs.length;
 
-renderJobs();
+get("year").textContent = new Date().getFullYear();
+
+displayJobs();
 
 </script>
 
